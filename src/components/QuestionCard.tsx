@@ -1,9 +1,10 @@
 import React from "react";
+import { AnswerObject } from "../App";
 
 type QuestionCardProps = {
 	question: string;
 	answers: string[];
-	callback: any;
+	callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	usersAnswer: any;
 	questionNr: number;
 	totalQuestions: number;
@@ -15,12 +16,16 @@ export const QuestionCard = (props: QuestionCardProps) => {
 			<p>
 				Question {props.questionNr} of {props.totalQuestions}
 			</p>
-			<p>{props.question}</p>
+			<p dangerouslySetInnerHTML={{ __html: props.question }} />
 			<div>
-				{props.answers.map((answer) => (
-					<div>
-						<button disabled={props.usersAnswer} onClick={props.callback}>
-							<span>{props.answers}</span>
+				{props.answers?.map((answer) => (
+					<div key={answer}>
+						<button
+							disabled={props.usersAnswer ? true : false}
+							value={answer}
+							onClick={props.callback}
+						>
+							<span dangerouslySetInnerHTML={{ __html: answer }}></span>
 						</button>
 					</div>
 				))}
