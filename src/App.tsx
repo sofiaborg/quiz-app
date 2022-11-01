@@ -72,32 +72,30 @@ export const App = () => {
 
 	return (
 		<>
-			<StyledBasic>
-				<h1>QUIZ</h1>
-				{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-					<button className="start" onClick={startQuiz}>
-						start
-					</button>
-				) : null}
-				{!gameOver ? <p className="score">{score}</p> : null}
-				{loading ? <p>loading questions...</p> : null}
-				{!loading && !gameOver && (
-					<QuestionCard
-						questionNr={number + 1}
-						totalQuestions={TOTAL_QUESTIONS}
-						question={questions[number].question}
-						answers={questions[number].answers}
-						usersAnswer={userAnswers ? userAnswers[number] : undefined}
-						callback={checkAnswer}
-					/>
-				)}
+			<h1>QUIZ</h1>
+			{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+				<button className="start" onClick={startQuiz}>
+					start
+				</button>
+			) : null}
+			{!gameOver ? <p className="score">{score}</p> : null}
+			{loading ? <p>loading questions...</p> : null}
+			{!loading && !gameOver && (
+				<QuestionCard
+					questionNr={number + 1}
+					totalQuestions={TOTAL_QUESTIONS}
+					question={questions[number].question}
+					answers={questions[number].answers}
+					usersAnswer={userAnswers ? userAnswers[number] : undefined}
+					callback={checkAnswer}
+				/>
+			)}
 
-				{showNextBtn ? (
-					<button className="next" onClick={nextQuestion}>
-						next question
-					</button>
-				) : null}
-			</StyledBasic>
+			{showNextBtn ? (
+				<button className="next" onClick={nextQuestion}>
+					next question
+				</button>
+			) : null}
 		</>
 	);
 };
