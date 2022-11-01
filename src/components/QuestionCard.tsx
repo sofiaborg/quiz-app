@@ -5,7 +5,7 @@ type QuestionCardProps = {
 	question: string;
 	answers: string[];
 	callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
-	usersAnswer: any;
+	usersAnswer: AnswerObject | undefined;
 	questionNr: number;
 	totalQuestions: number;
 };
